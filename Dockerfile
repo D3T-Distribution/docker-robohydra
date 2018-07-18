@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 # RUN echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
-RUN apt-get update -qq && apt-get install -y -qq curl supervisor nginx git wget
+RUN apt-get update -qq && apt-get install -y -qq curl supervisor git wget
 
 # install npm
 RUN apt-get update -qq && apt-get install -y -qq npm
@@ -15,4 +15,4 @@ WORKDIR /var/www/current
 
 EXPOSE 3000
 
-CMD ["robohydra robohydra.conf path=var/log/robohydra.log"]
+CMD ["/usr/local/bin/robohydra", "/var/www/current/robohydra.conf"]
